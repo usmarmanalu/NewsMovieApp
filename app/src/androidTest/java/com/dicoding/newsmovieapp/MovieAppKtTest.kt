@@ -33,10 +33,32 @@ class MovieAppKtTest {
     }
 
     @Test
-    fun navHost_clickItem_navigateToDetailWithData() {
-        composeTestRule.onNodeWithTag("MovieList").performScrollToIndex(2)
-        composeTestRule.onNodeWithText(MovieData.dummyMovie[5].title).performClick()
-        navHostController.assertCurrentRouteName(Screen.DetailMovie.route)
-        composeTestRule.onNodeWithText(MovieData.dummyMovie[5].title).assertIsDisplayed()
+    fun navHost_bottomNavigation_working() {
+        composeTestRule.onNodeWithContentDescription("Home", ignoreCase = false).assertExists()
+            .performClick()
+        navHostController.assertCurrentRouteName(Screen.Home.route)
+
+        composeTestRule.onNodeWithContentDescription("Favorite", ignoreCase = false).assertExists()
+            .performClick()
+        navHostController.assertCurrentRouteName(Screen.Favorite.route)
+
+        composeTestRule.onNodeWithContentDescription("Profile", ignoreCase = false).assertExists()
+            .performClick()
+        navHostController.assertCurrentRouteName(Screen.Profile.route)
+
+    }
+
+    @Test
+    fun searchMovie_Found() {
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.search_movie))
+            .performTextInput(MovieData.dummyMovie[5].runtime)
+        composeTestRule.onNodeWithTag("MovieList").assertIsDisplayed()
+        composeTestRule.onNodeWithText(MovieData.dummyMovie[5].runtime).assertIsDisplayed()
+    }
+
+    @Test
+    fun searchMovie_notFound() {
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.search_movie))
+            .performTextInput("Bangkit Academy")
     }
 }

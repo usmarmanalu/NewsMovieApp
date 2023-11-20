@@ -66,8 +66,11 @@ fun HomeContent(
     ) {
         items(movie) { data ->
             MovieItem(
-                poster = data.posterUrl, title = data.title, year = data.year, runtime = data
-                    .runtime, modifier = Modifier.clickable {
+                poster = data.posterUrl,
+                title = data.title,
+                year = data.year,
+                runtime = data.runtime,
+                modifier = Modifier.clickable {
                     navigateToDetail(data.id)
                 }
             )

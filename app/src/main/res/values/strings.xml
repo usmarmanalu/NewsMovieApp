@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">News Movie</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_profile">Profile</string>
@@ -14,9 +13,10 @@
     <string name="movie_title">Judul Movie: %s</string>
     <string name="year">Dirilis pada Tahun: %s</string>
     <string name="runtime">Durasi: %s</string>
-    <string name="back_to_home">Kembali ke Home</string>
+    <string name="back_to_home">Back</string>
     <string name="name">Usmar Manalu</string>
     <string name="email">usmarmnl99@gmail.com</string>
-
-
+    <string name="empty_list">Data Movie kosong</string>
+    <string name="sukses">Sukses tersimpan</string>
+    <string name="gagal">Sukses dihapus</string>
 </resources>

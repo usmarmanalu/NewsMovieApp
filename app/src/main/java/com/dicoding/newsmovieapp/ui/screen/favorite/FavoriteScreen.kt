@@ -21,7 +21,6 @@ fun FavoriteScreen(
             Injection.provideRepository(LocalContext.current)
         )
     ),
-    navigateToDetail: (Long) -> Unit
 ) {
 
     viewModel.uiState.collectAsState(initial = ResultState.Loading).value.let { uiState ->

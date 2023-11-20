@@ -53,11 +53,7 @@ fun MovieApp(
             }
 
             composable(Screen.Favorite.route) {
-                FavoriteScreen(
-                    navigateToDetail = { movieId ->
-                        navHostController.navigate(Screen.DetailMovie.createRoute(movieId))
-                    }
-                )
+                FavoriteScreen()
             }
 
             composable(Screen.Profile.route) {
@@ -76,16 +72,7 @@ fun MovieApp(
                     movieId = id,
                     navigateBack = {
                         navHostController.navigateUp()
-                    }, navigateToMovie = {
-                        navHostController.popBackStack()
-                        navHostController.navigate(Screen.Favorite.route) {
-                            popUpTo(navHostController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    }
+                    },
                 )
             }
         }

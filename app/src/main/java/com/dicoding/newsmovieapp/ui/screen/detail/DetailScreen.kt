@@ -1,5 +1,6 @@
 package com.dicoding.newsmovieapp.ui.screen.detail
 
+import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -29,11 +30,11 @@ fun DetailScreen(
         )
     ),
     navigateBack: () -> Unit,
-    navigateToMovie: () -> Unit
 
-) {
+    ) {
     val uiState by viewModel.uiState.collectAsState()
     val isMovieSaved by viewModel.isMovieSaved.collectAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(movieId) {
         viewModel.getMovieId(movieId)
@@ -57,8 +58,11 @@ fun DetailScreen(
                 setFavorite = {
                     if (viewModel.isMovieSaved.value) {
                         viewModel.deleteFavoriteMovie(data)
+                        Toast.makeText(context, context.resources.getString(R.string.gagal), Toast.LENGTH_SHORT).show()
+
                     } else {
                         viewModel.saveFavoriteMovie(data)
+                        Toast.makeText(context, context.resources.getString(R.string.sukses), Toast.LENGTH_SHORT).show()
                     }
                 },
                 onBackClick = navigateBack
@@ -139,6 +143,6 @@ fun DetailContent(
 @Preview(showBackground = true)
 fun DetailPreview() {
     NewsMovieAppTheme {
-        DetailScreen(movieId = 1, navigateBack = {}, navigateToMovie = {})
+        DetailScreen(movieId = 1, navigateBack = {})
     }
 }
