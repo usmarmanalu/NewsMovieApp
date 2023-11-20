@@ -19,4 +19,16 @@
     <string name="empty_list">Data Movie kosong</string>
     <string name="sukses">Sukses tersimpan</string>
     <string name="gagal">Sukses dihapus</string>
+    <string name="sinopsis">Sinopsis</string>
+    <string name="matrix">Matrix</string>
+    <string name="mowgli">Mowgli</string>
+    <string name="doctor_strange">Doctor Strange</string>
+    <string name="john_wick">John Wick</string>
+    <string name="schindelers_list">Schindelers List</string>
+    <string name="lord_of_the_rings">Lord Of The Rings</string>
+    <string name="pulp_fiction">Pulp Fiction</string>
+    <string name="clint_east_wood">Clint East Wood</string>
+    <string name="joker">Joker</string>
+    <string name="fight_club">Fight Club</string>
+    <string name="category">Category Movie</string>
 </resources>

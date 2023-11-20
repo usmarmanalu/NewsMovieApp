@@ -1,6 +1,6 @@
 package com.dicoding.newsmovieapp.ui.screen.detail
 
-import android.widget.Toast
+import android.widget.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -10,6 +10,8 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
+import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.style.*
 import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import androidx.lifecycle.viewmodel.compose.*
@@ -54,15 +56,21 @@ fun DetailScreen(
                 year = data.year,
                 runtime = data.runtime,
                 posterUrl = data.posterUrl,
+                sinopsis = data.sinopsis,
                 isMovieSaved,
                 setFavorite = {
                     if (viewModel.isMovieSaved.value) {
                         viewModel.deleteFavoriteMovie(data)
-                        Toast.makeText(context, context.resources.getString(R.string.gagal), Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(
+                            context, context.resources.getString(R.string.gagal), Toast.LENGTH_SHORT
+                        ).show()
                     } else {
                         viewModel.saveFavoriteMovie(data)
-                        Toast.makeText(context, context.resources.getString(R.string.sukses), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            context.resources.getString(R.string.sukses),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 },
                 onBackClick = navigateBack
@@ -80,13 +88,13 @@ fun DetailContent(
     year: String,
     runtime: String,
     posterUrl: String,
+    sinopsis: String,
     isMovieSaved: Boolean,
     setFavorite: () -> Unit,
     onBackClick: () -> Unit
 ) {
     Column {
         CustomToAppBar(title = stringResource(R.string.data_movie), onBackClick = onBackClick)
-
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
@@ -110,34 +118,43 @@ fun DetailContent(
                     style = Typography.titleLarge.copy(Color.Magenta)
                 )
             }
-
             HeightSpacer(height = 8.dp)
             AsyncImage(
                 contentScale = ContentScale.Crop,
-                model = posterUrl, contentDescription = title,
+                model = posterUrl,
+                contentDescription = title,
                 modifier = Modifier
-                    .size(500.dp)
+                    .size(400.dp)
                     .align(Alignment.CenterHorizontally)
             )
             HeightSpacer(height = 16.dp)
             Text(
+                fontSize = 20.sp,
                 text = stringResource(id = R.string.movie_title, title),
                 style = Typography.titleMedium.copy(color = Color.Black)
             )
-
             HeightSpacer(height = 8.dp)
             Text(
-                text = stringResource(id = R.string.year, year),
-                style = Typography.bodyLarge
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp,
+                text = stringResource(id = R.string.sinopsis)
+            )
+            HeightSpacer(height = 16.dp)
+            Text(
+                textAlign = TextAlign.Center, text = sinopsis, fontStyle = FontStyle.Italic
+            )
+            HeightSpacer(height = 24.dp)
+            Text(
+                text = stringResource(id = R.string.year, year), style = Typography.bodyLarge
             )
             HeightSpacer(height = 8.dp)
             Text(
-                text = stringResource(id = R.string.runtime, runtime),
-                style = Typography.bodyLarge
+                text = stringResource(id = R.string.runtime, runtime), style = Typography.bodyLarge
             )
         }
     }
 }
+
 
 @Composable
 @Preview(showBackground = true)
@@ -146,3 +163,5 @@ fun DetailPreview() {
         DetailScreen(movieId = 1, navigateBack = {})
     }
 }
+
+
